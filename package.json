@@ -1,0 +1,29 @@
+{
+  "name": "tuiter-node-server-app",
+  "version": "1.0.0",
+  "description": "Node.js for Tuiter app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soundarya2908/tuiter-node-server-app.git"
+  },
+  "keywords": [
+    "Node",
+    "Rest",
+    "server",
+    "http"
+  ],
+  "author": "Soundarya Srikanta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soundarya2908/tuiter-node-server-app/issues"
+  },
+  "homepage": "https://github.com/soundarya2908/tuiter-node-server-app#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
