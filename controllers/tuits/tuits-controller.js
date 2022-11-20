@@ -2,10 +2,15 @@ import posts from './tuits.js';
 let tuits = posts;
 
 const createTuit = (req,res) => {
+    console.log("CreateTuir in server: " + req.body)
     const newTuit = req.body;
     newTuit._id = (new Date()).getTime() + '';
     newTuit.likes = 0
     newTuit.liked = false;
+    newTuit.username = 'Yay!Me';
+    newTuit.handle = '@yayme';
+    newTuit.time = 'just now';
+    newTuit.image = 'nasa.png';
     tuits.push(newTuit)
     res.json(newTuit)
 }
