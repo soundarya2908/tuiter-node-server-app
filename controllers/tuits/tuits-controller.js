@@ -1,10 +1,10 @@
-import posts from './tuits.js';
-let tuits = posts;
+import * as tuitsDao from './tuits-dao.js';
+// import posts from './tuits.js';
+// let tuits = posts;
 
-const createTuit = (req,res) => {
-    console.log("CreateTuir in server: " + req.body)
+const createTuit = async (req,res) => {
     const newTuit = req.body;
-    newTuit._id = (new Date()).getTime() + '';
+    // newTuit._id = (new Date()).getTime() + '';
     newTuit.likes = 0
     newTuit.replies = 0
     newTuit.retuits = 0
@@ -13,27 +13,30 @@ const createTuit = (req,res) => {
     newTuit.handle = '@yayme';
     newTuit.time = 'just now';
     newTuit.image = 'nasa.png';
-    tuits.push(newTuit)
-    res.json(newTuit)
+    // tuits.push(newTuit)
+    const insertedTuit = await tuitsDao.createTuit(newTuit);
+    res.json(insertedTuit)
 }
 
-const findTuits = (req,res) => {
+const findTuits = async (req,res) => {
+    const tuits = await tuitsDao.findTuits();
     res.json(tuits)
 }
 
-const updateTuit = (req,res) => {
+const updateTuit = async (req,res) => {
     const tuitId = req.params.tid;
     const updates = req.body;
-    const tuitIndex = tuits.findIndex((tuit) => tuit._id == tuitId)
-    tuits[tuitIndex] = {...tuits[tuitIndex], ...updates}
-    res.sendStatus(200)
+    // const tuitIndex = tuits.findIndex((tuit) => tuit._id == tuitId)
+    // tuits[tuitIndex] = {...tuits[tuitIndex], ...updates}
+    const status = await tuitsDao.updateTuit(tuitId, updates)
+    res.json(status)
 }
 
-const deleteTuit = (req,res) => {
+const deleteTuit = async (req,res) => {
     const tuitId = req.params.tid;
-    tuits = tuits.filter((tuit) => (tuit._id != tuitId))
-    console.log(tuits)
-    res.sendStatus(200)
+    const status = await tuitsDao.deleteTuit(tuitId)
+    // tuits = tuits.filter((tuit) => (tuit._id != tuitId))
+    res.json(status)
 }
 
 export default (app) => {
