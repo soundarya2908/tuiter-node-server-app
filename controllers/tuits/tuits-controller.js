@@ -15,6 +15,8 @@ const createTuit = async (req,res) => {
     newTuit.image = 'nasa.png';
     // tuits.push(newTuit)
     const insertedTuit = await tuitsDao.createTuit(newTuit);
+    console.log("newTuit in tuits-controller: " + JSON.stringify(newTuit))
+    console.log("insertedTuit in tuits-controller: " + JSON.stringify(insertedTuit))
     res.json(insertedTuit)
 }
 
