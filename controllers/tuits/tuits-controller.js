@@ -6,17 +6,17 @@ const createTuit = async (req,res) => {
     const newTuit = req.body;
     // newTuit._id = (new Date()).getTime() + '';
     newTuit.likes = 0
+    newTuit.dislikes = 0
     newTuit.replies = 0
     newTuit.retuits = 0
     newTuit.liked = false;
+    newTuit.disliked = false
     newTuit.username = 'Yay!Me';
     newTuit.handle = '@yayme';
     newTuit.time = 'just now';
     newTuit.image = 'nasa.png';
     // tuits.push(newTuit)
     const insertedTuit = await tuitsDao.createTuit(newTuit);
-    console.log("newTuit in tuits-controller: " + JSON.stringify(newTuit))
-    console.log("insertedTuit in tuits-controller: " + JSON.stringify(insertedTuit))
     res.json(insertedTuit)
 }
 
